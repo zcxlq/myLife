@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap'
+import H5 from './H5.vue'
 
 const box = ref([])
 
@@ -126,7 +127,7 @@ const getCoordinates = (index) => {
 }
 const loveMove = (element,index) => {
   if (index <= 108) {
-    console.log('第一个元素',element)
+    // console.log('第一个元素',element)
     // element.style.left = 100 + 'px'
     // element.style.top = 100 + 'px'
     let obj = getCoordinates(index)
@@ -186,13 +187,22 @@ onMounted(() => {
 })
 
 })
-
+const isH5 = ref(window.innerWidth < 500)
+// onMounted(() => {
+//   isH5.value = window.innerWidth < 500
+// })
+console.log(isH5.value,'isH5')
 </script>
 
 <template>
   <div class="container">
-    <div ref="box" class="box" v-for="(item,index) in list" :key="index" :style="{ transform: 'rotate(' + item.transform + ')', backgroundImage: item.gradient}">
-      {{item.name}}
+    <div v-if="!isH5">
+      <div ref="box" class="box" v-for="(item,index) in list" :key="index" :style="{ transform: 'rotate(' + item.transform + ')', backgroundImage: item.gradient}">
+        {{item.name}}
+      </div>
+    </div>
+    <div v-else>
+      <H5 />
     </div>
   </div>
 </template>
