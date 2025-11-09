@@ -15,7 +15,27 @@ const gradientOptions = [
   'linear-gradient(90deg, #a6c0fe, #f68084)',
   'linear-gradient(90deg, #fccb90, #d57eeb)'
 ]
-const nameOptions = ['小王', '小李', '小张', '小刘', '小陈', '小赵', '小孙', '小周']
+const nameOptions = [
+  '每天都要元气满满',
+ '天冷了，多穿衣服', 
+ '保持好心情', '珍惜每一刻', 
+ '愿所以的烦恼都消失', 
+ '要相信自己', 
+ '记得吃水果', 
+ '别熬夜',
+ '别太累啦，偶尔偷懒也好',
+ '按时吃饭，别饿到',
+ '照顾好自己呀',
+ '平安顺遂，常开心',
+ '记得多喝水呀',
+ '有我在，别担心',
+ '慢慢来，不着急',
+ '委屈了就告诉我',
+ '别怕，我陪着你',
+ '你已经很棒啦',
+ '照顾好，等你归',
+ '少熬夜，养精神',
+]
 // 生成随机数据的函数
 const generateList = (count) => {
   const list = []
@@ -97,7 +117,7 @@ const getCoordinates = (index) => {
   
   // 心形中心位置
   const centerX = window.innerWidth / 2;
-  const centerY = window.innerHeight / 2;
+  const centerY = window.innerHeight / 2 - 100;
   
   // 根据心形参数方程计算坐标
   const x = centerX + scale * 16 * Math.pow(Math.sin(t), 3);
@@ -200,6 +220,9 @@ console.log(isH5.value,'isH5')
       <div ref="box" class="box" v-for="(item,index) in list" :key="index" :style="{ transform: 'rotate(' + item.transform + ')', backgroundImage: item.gradient}">
         {{item.name}}
       </div>
+      <div class="image">
+        <img src="../images/love.jpeg" alt="" srcset="">
+      </div>
     </div>
     <div v-else>
       <H5 />
@@ -213,12 +236,24 @@ console.log(isH5.value,'isH5')
   color: #fff;
   font-weight: 600;
   width: 120px;
-  height: 30px;
+  height: 40px;
   background-color: red;
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
+}
+.image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-70%, -70%);
+  z-index: -999;
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 </style>
