@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-
+import oneGift from './oneGift.vue'
 const openGift = ref(false)
 const giftId = ref(null)
 const handleGift = (id) => {
@@ -10,6 +10,7 @@ const handleGift = (id) => {
     console.log('giftId', giftId.value)
   }, 2400)
 }
+
 </script>
 
 <template>
@@ -25,14 +26,14 @@ const handleGift = (id) => {
         <img src="../images/gift.gif" @click="handleGift('2')" class="gift-img" alt="" srcset="">
         <img src="../images/gift.gif" @click="handleGift('3')" class="gift-img" alt="" srcset="">
       </div>
-      <div class="main" v-else style="margin-top: -200px;">
+      <div class="main" v-else style="margin-top: -180px;margin-left: -30px;">
         <img src="../images/open-gift.gif" width="300px" height="300px" alt="" srcset="">
       </div>
     </div>
     
     <!-- 礼物内容显示区域 -->
     <div class="gift-content" v-if="giftId == 1">
-      <span>第一个礼物的内容</span>
+      <oneGift :type="1"></oneGift>
     </div>
     <div class="gift-content" v-if="giftId == 2">
       <span>第二个礼物的内容</span>
@@ -56,7 +57,6 @@ const handleGift = (id) => {
 }
 
 .box { 
-  border: 2px solid red;
   width: 140px;
   height: 80px;
   position: absolute;
