@@ -8,6 +8,7 @@ const props = defineProps({
   }
 })
 console.log('props.type', props.type)
+const app = ref(props.type)
 // 存储随机位置和尺寸的对象数组
 const randomItems = ref([])
 
@@ -97,13 +98,27 @@ onMounted(() => {
     setTimeout(() => {
       item.show = true
     }, index * 100) // 每100ms显示一个元素
+    if(index === 51) {
+      setTimeout(() => {
+        randomItems.value.forEach((item, index) => {
+          setTimeout(() => {
+            item.show = false
+          }, index * 100)
+          if(index === 51) {
+            setTimeout(() => {
+              app.value = 2
+            }, 5200)
+          }
+        })
+      }, 7200)
+    }
   })
 })
 </script>
 
 <template>
   <div>
-    <div v-if="props.type == 1">
+    <div v-if="app == 1">
       <div 
         class="box" 
         v-for="(item, index) in randomItems" 
@@ -120,6 +135,9 @@ onMounted(() => {
         </div>  
         <div class="main" :style="{backgroundColor:item.color.primary}">{{item.text}}</div>  
       </div>
+    </div>
+    <div v-if="app == 2">
+      <div>appp</div>
     </div>
   </div>
 </template>

@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue'
 import oneGift from './oneGift.vue'
+import towGift from './towGift.vue'
+import threeGift from './threeGift.vue'
 const openGift = ref(false)
 const giftId = ref(null)
 const handleGift = (id) => {
@@ -36,10 +38,10 @@ const handleGift = (id) => {
       <oneGift :type="1"></oneGift>
     </div>
     <div class="gift-content" v-if="giftId == 2">
-      <span>第二个礼物的内容</span>
+      <towGift></towGift>
     </div>
     <div class="gift-content" v-if="giftId == 3">
-      <span>第三个礼物的内容</span>
+      <threeGift></threeGift>
     </div>
   </div>
 </template>
@@ -69,11 +71,12 @@ const handleGift = (id) => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-left: -50px;
 }
 
 .gift-img{
-  width: 100px; 
-  height: 100px;
+  width: 120px; 
+  height: 120px;
 }
 
 /* 添加礼物内容样式 */
