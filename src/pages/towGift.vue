@@ -2,13 +2,25 @@
 import { ref, onMounted } from 'vue'
 
 const images = ref([
-  require('../images/bgc.jpg'),
-  require('../images/gift.gif'),
-  require('../images/open-gift.gif'),
+  require('../images/character/material.png'),
+  require('../images/character/material2.png'),
+  require('../images/character/material3.png'),
 ])
 
 const randomItems = ref([])
-const app = ref(1)
+const app = ref(2)
+const month = ref([
+  {name: '一月', value: 1},
+  {name: '二月', value: 2},
+  {name: '三月', value: 3},
+  {name: '四月', value: 4},
+  {name: '五月', value: 5},
+  {name: '六月', value: 6},
+  {name: '七月', value: 7},
+  {name: '八月', value: 8},
+  {name: '九月', value: 9},
+  {name: '十月', value: 10},
+])
 
 // 生成随机位置的函数
 const generateRandomDimensions = () => {
@@ -81,11 +93,15 @@ onMounted(() => {
         }"
         :class="{ 'show': item.show }"
       >
-        <img :src="item.image" width="100" height="100"/>
+        <img :src="item.image" width="100" height="auto"/>
       </div>
     </div>
     <div v-if="app == 2">
-      <div>图片展示完成</div>
+      <div class="choose-box">
+        <div class="choose-main">
+          xxx
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -101,5 +117,14 @@ onMounted(() => {
 .image-box.show {
   opacity: 1;
   transform: scale(1);
+}
+
+.choose-box{
+  width: 300px;
+  height: 400px;
+  background-color: lightgray;
+}
+.choose-main{
+  background-color: red;
 }
 </style>

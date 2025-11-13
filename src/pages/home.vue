@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap'
 import H5 from './H5.vue'
-
+import effectMaterials from './effectMaterials.vue'
 const box = ref([])
 
 const gradientOptions = [
@@ -223,6 +223,7 @@ console.log(isH5.value,'isH5')
       <div class="image">
         <img src="../images/love.jpeg" alt="" srcset="">
       </div>
+      <effectMaterials></effectMaterials>
     </div>
     <div v-else>
       <H5 />
