@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import oneGift from './oneGift.vue'
 import towGift from './towGift.vue'
 import threeGift from './threeGift.vue'
+import rotationImg from './components/rotationImg.vue'
 const openGift = ref(false)
 const giftId = ref(null)
 const handleGift = (id) => {

@@ -1,12 +1,58 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-
+import 'animate.css'
+import rotationImg from './components/rotationImg.vue'
+import leftRightButtons from './components/leftRightButtons.vue'
 const images = ref([
   require('../images/character/material.png'),
   require('../images/character/material2.png'),
   require('../images/character/material3.png'),
 ])
-
+const imageIndex = ref(0)
+const imageList = [
+  [require('../images/character/material.png'),
+  require('../images/character/material.png'),
+  require('../images/character/material.png'),
+  require('../images/character/material.png'),
+  require('../images/character/material.png'),
+  require('../images/character/material.png'),
+  require('../images/character/material.png'),
+  require('../images/character/material.png'),
+  require('../images/character/material.png'),
+  require('../images/character/material.png')],
+  [require('../images/character/material2.png'),
+  require('../images/character/material2.png'),
+  require('../images/character/material2.png'),
+  require('../images/character/material2.png'),
+  require('../images/character/material2.png'),
+  require('../images/character/material2.png'),
+  require('../images/character/material2.png'),
+  require('../images/character/material2.png'),
+  require('../images/character/material2.png'),
+  require('../images/character/material2.png')],
+  [require('../images/character/material3.png'),
+  require('../images/character/material3.png'),
+  require('../images/character/material3.png'),
+  require('../images/character/material3.png'),
+  require('../images/character/material3.png'),
+  require('../images/character/material3.png'),
+  require('../images/character/material3.png'),
+  require('../images/character/material3.png'),
+  require('../images/character/material3.png'),
+  require('../images/character/material3.png')]
+]
+const imageText = ref([
+  '材料包1',
+  '材料包2',
+  '材料包3',
+  '材料包4',
+  '材料包5',
+  '材料包6',
+  '材料包7',
+  '材料包8',
+  '材料包9',
+  '材料包10',
+])
 const randomItems = ref([])
 const app = ref(2)
 const month = ref([
@@ -53,6 +99,54 @@ const generateRandomDimensions = () => {
 
 generateRandomDimensions()
 
+const triggerShake = ref(false)
+const clickLeft = () => {
+  if(switchImage.value){
+    if(selectIndex.value > 0){
+      selectIndex.value -= 1
+    } else {
+      selectIndex.value = imageList[imageIndex.value].length - 1
+    }
+  }else{
+    if(imageIndex.value > 0){
+      imageIndex.value -= 1
+    } else {
+      imageIndex.value = imageList.length - 1
+    }
+  }
+  triggerMainAnimation()
+  console.log('点击了左边按钮',selectIndex.value)
+}
+const clickRight = () => {
+  if(switchImage.value){
+    if(selectIndex.value < imageList[imageIndex.value].length - 1){
+      selectIndex.value += 1
+    } else {
+      selectIndex.value = 0
+    }
+  }else{ 
+    if(imageIndex.value < imageList.length - 1){
+      imageIndex.value += 1
+    } else {
+      imageIndex.value = 0
+    }
+  }
+  triggerMainAnimation()
+  console.log('点击了右边按钮',selectIndex.value)
+}
+const triggerMainAnimation = () => {
+  triggerShake.value = true
+  setTimeout(() => {
+    triggerShake.value = false
+  }, 1000)
+}
+const selectIndex = ref(0)
+const switchImage = ref(false)
+const handleImageSelect = (selectedData) => {
+  selectIndex.value = selectedData.index
+  switchImage.value = selectedData.isShow
+  console.log('父组件收到图片选择:', selectedData)
+}
 // 组件挂载后生成随机元素
 onMounted(() => {
   // 逐个显示元素
@@ -98,8 +192,12 @@ onMounted(() => {
     </div>
     <div v-if="app == 2">
       <div class="choose-box">
-        <div class="choose-main">
-          xxx
+        <div class="choose-title">选择一个礼物</div>
+        <div class="choose-main animate__animated" :class="{ 'animate__backInDown': triggerShake }">
+          <rotationImg :imageList="imageList[imageIndex]" :imageText="imageText" :selectIndex="selectIndex" :onImageSelect="handleImageSelect"></rotationImg>
+        </div>
+        <div class="choose-bottom">
+          <leftRightButtons :clickLeft="clickLeft" :clickRight="clickRight"></leftRightButtons>
         </div>
       </div>
     </div>
@@ -118,13 +216,26 @@ onMounted(() => {
   opacity: 1;
   transform: scale(1);
 }
-
-.choose-box{
-  width: 300px;
-  height: 400px;
-  background-color: lightgray;
+.choose-title{
+  position: absolute;
+  top: -135%;
+  left:40%;
 }
-.choose-main{
-  background-color: red;
+.choose-bottom{
+  position: absolute;
+  left:23%;
+}
+.choose-main {
+  transition: transform 0.3s ease;
+}
+
+.shake {
+  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
 }
 </style>
