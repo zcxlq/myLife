@@ -73,7 +73,7 @@ const goBack = () => {
       <div class="inner" style="--quantity: 10;">
         <div class="card" style="--index: 0;--color-card: 142, 249, 252;" @click="showImg('142, 249, 252', 0)">
           <div class="img">
-            <img :src="props.imageList[0]" alt="" style="margin-top: 10px;" width="100px" height="auto">
+            <img src="../../images/character/material.png" alt="" style="margin-top: 10px;" width="100px" height="auto">
             <div class="text">
               <p class="title">{{props.imageText[0]}}</p>
             </div>
@@ -81,7 +81,7 @@ const goBack = () => {
         </div>
         <div class="card" style="--index: 1;--color-card: 142, 252, 204;" @click="showImg('142, 252, 204', 1)">
           <div class="img">
-            <img :src="props.imageList[1]" alt="" style="margin-top: 10px;" width="100px" height="auto">
+            <img src="../../images/character/material.png" alt="" style="margin-top: 10px;" width="100px" height="auto">
             <div class="text">
               <p class="title">{{props.imageText[1]}}</p>
             </div>
@@ -89,7 +89,7 @@ const goBack = () => {
         </div>
         <div class="card" style="--index: 2;--color-card: 142, 252, 157;" @click="showImg('142, 252, 157', 2)">
           <div class="img">
-            <img :src="props.imageList[2]" alt="" style="margin-top: 10px;" width="100px" height="auto">
+            <img src="../../images/character/material.png" alt="" style="margin-top: 10px;" width="100px" height="auto">
             <div class="text">
               <p class="title">{{props.imageText[2]}}</p>
             </div>
@@ -97,7 +97,7 @@ const goBack = () => {
         </div>
         <div class="card" style="--index: 3;--color-card: 215, 252, 142;" @click="showImg('215, 252, 142', 3)">
           <div class="img">
-            <img :src="props.imageList[3]" alt="" style="margin-top: 10px;" width="100px" height="auto">
+            <img src="../../images/character/material.png" alt="" style="margin-top: 10px;" width="100px" height="auto">
             <div class="text">
               <p class="title">{{props.imageText[3]}}</p>
             </div>
@@ -105,7 +105,7 @@ const goBack = () => {
         </div>
         <div class="card" style="--index: 4;--color-card: 252, 252, 142;" @click="showImg('252, 252, 142', 4)">
           <div class="img">
-            <img :src="props.imageList[4]" alt="" style="margin-top: 10px;" width="100px" height="auto">
+            <img src="../../images/character/material.png" alt="" style="margin-top: 10px;" width="100px" height="auto">
             <div class="text">
               <p class="title">{{props.imageText[4]}}</p>
             </div>

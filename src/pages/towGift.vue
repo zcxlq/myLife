@@ -54,7 +54,7 @@ const imageText = ref([
   '材料包10',
 ])
 const randomItems = ref([])
-const app = ref(2)
+const app = ref(1)
 const month = ref([
   {name: '一月', value: 1},
   {name: '二月', value: 2},
